@@ -65,6 +65,7 @@
             var resetCountUp = function() {
                 window.clearInterval(timerIncrease);
                 seconds.textContent = "0";
+                seconds.style.color = "black";
                 startButton.disabled = false;
             };
             
@@ -72,6 +73,7 @@
             var startCountUp = function() {
               timerIncrease = window.setInterval(countUp, 1000);
               startButton.disabled = true;
+              seconds.style.color = "rgb(0, 200, 29)"; 
             };
             
             // Event listener for a click on the button for the stopButton
@@ -86,6 +88,7 @@
             //creating the timerIncrease variable. I don't know how to create the variable without making it run so I just chose to stop it with window.clearInterval immediately afterwards. 
             var timerIncrease = window.setInterval(countUp, 1000);
             timerIncrease = window.clearInterval(timerIncrease); 
+ 
         </script>
     </body>
 </html>
