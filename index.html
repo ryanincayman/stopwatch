@@ -13,11 +13,23 @@
             }
             
             button {
-                background-color: rgb(0, 250, 29);
                 border-radius: 15px;
                 width:180px;
                 font-size: 3em;
                 margin: 20px;
+            }
+
+            #start-button {
+                background-color: rgb(0, 250, 29);
+            }
+
+            #stop-button {
+                background-color: rgb(86, 86, 255);
+            }
+
+            #reset-button {
+                background-color: black;
+                color: white;
             }
             
         </style>
@@ -56,9 +68,17 @@
                 seconds.textContent = currentTime + 1;
             };
             
+            // The startCountUp function which starts the window.setInterval function. Also disables the START button so it can't be clicked twice.
+            var startCountUp = function() {
+              timerIncrease = window.setInterval(countUp, 1000);
+              startButton.disabled = true;
+              seconds.style.color = "rgb(0, 200, 0)"; 
+            };
+
             // The stopCountUp function which stops the window.setInterval using window.clearInterval
             var stopCountUp = function() {
                 window.clearInterval(timerIncrease);
+                seconds.style.color = "rgb(0, 0, 230)"; 
             };
             
             // The resetCountUp function which stops the window.setInterval using window.clearInterval. Resets the "seconds" text to 0. Resets the START button so it can be clicked again. 
@@ -67,13 +87,6 @@
                 seconds.textContent = "0";
                 seconds.style.color = "black";
                 startButton.disabled = false;
-            };
-            
-            // The startCountUp function which starts the window.setInterval function. Also disables the START button so it can't be clicked twice.
-            var startCountUp = function() {
-              timerIncrease = window.setInterval(countUp, 1000);
-              startButton.disabled = true;
-              seconds.style.color = "rgb(0, 200, 29)"; 
             };
             
             // Event listener for a click on the button for the stopButton
