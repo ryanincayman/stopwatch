@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Challenge: Stopwatch</title>
+            <style>
+
+            p {
+                font-size: 12em;
+                margin: 0;
+                text-align: center;
+                font-family: "arial";
+            }
+            
+            button {
+                background-color: rgb(0, 250, 29);
+                border-radius: 15px;
+                width:180px;
+                font-size: 3em;
+                margin: 20px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <!-- start button -->
+        <button id="start-button" type="button">START</button>
+        
+        <!-- stop button -->
+        <button id="stop-button" type="button">STOP</button>
+        
+        <!-- reset button -->
+        <button id="reset-button" type="button">RESET</button>
+        
+        <p>
+            <!-- displaying number of seconds passed -->
+            <span id="seconds">0</span>
+        </p>
+        <script>
+            
+            // creating a "seconds" variable to store the value of the #seconds Element"
+            var seconds = document.getElementById("seconds");
+
+            // creating a resetButton variable to store the "reset-button" element
+            var resetButton = document.getElementById("reset-button");
+            
+            // creating a startButton variable to store the "start-button" element
+            var startButton = document.getElementById("start-button");            
+            
+            // creating a stopButton variable to store the "stop-button" element
+            var stopButton = document.getElementById("stop-button");
+
+            // the countUp function which increments the "seconds" text up by 1
+            var countUp = function() {
+                var currentTime = parseFloat(seconds.textContent);
+                seconds.textContent = currentTime + 1;
+            };
+            
+            // The stopCountUp function which stops the window.setInterval using window.clearInterval
+            var stopCountUp = function() {
+                window.clearInterval(timerIncrease);
+            };
+            
+            // The resetCountUp function which stops the window.setInterval using window.clearInterval. Resets the "seconds" text to 0. Resets the START button so it can be clicked again. 
+            var resetCountUp = function() {
+                window.clearInterval(timerIncrease);
+                seconds.textContent = "0";
+                startButton.disabled = false;
+            };
+            
+            // The startCountUp function which starts the window.setInterval function. Also disables the START button so it can't be clicked twice.
+            var startCountUp = function() {
+              timerIncrease = window.setInterval(countUp, 1000);
+              startButton.disabled = true;
+            };
+            
+            // Event listener for a click on the button for the stopButton
+            stopButton.addEventListener("click", stopCountUp);
+            
+            // Event listener for a click on the button for the startButton
+            startButton.addEventListener("click", startCountUp);
+            
+            // Event listener for a click on the button for the startButton
+            resetButton.addEventListener("click", resetCountUp);
+            
+            //creating the timerIncrease variable. I don't know how to create the variable without making it run so I just chose to stop it with window.clearInterval immediately afterwards. 
+            var timerIncrease = window.setInterval(countUp, 1000);
+            timerIncrease = window.clearInterval(timerIncrease); 
+        </script>
+    </body>
+</html>
